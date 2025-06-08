@@ -18,7 +18,6 @@ export default class Modal extends Component {
   handleKeyDown = e => {
     if (e.code === 'Escape') {
       console.log('Нажали ESC, нужно закрыть модалку');
-
       this.props.onClose();
     }
   };
@@ -32,9 +31,12 @@ export default class Modal extends Component {
   render() {
     return createPortal(
       <div className="Modal__backdrop" onClick={this.handleBackdropClick}>
-        <div className="Modal__content">{this.props.children}</div>
+        <div className="Modal__content">
+          {this.props.children}
+          <button onClick={this.handleBackdropClick}>Close</button>
+        </div>
       </div>,
-      modalRoot,
+      modalRoot
     );
   }
 }
