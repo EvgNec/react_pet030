@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import Container from './Container'
-import contacts from './contacts.json'
+import React, { Component } from 'react';
+import Container from './Container';
+import contacts from './contacts.json';
 import Modal from './Modal';
 
 export class App extends Component {
@@ -19,12 +19,15 @@ export class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const nextContacts = this.state.contacts;
     const prevContacts = prevState.contacts;
- if (nextContacts !== prevContacts) {
+    if (nextContacts !== prevContacts) {
       console.log('Обновилось поле contacts, записываю contacts в хранилище');
-      localStorage.setItem('contacts', JSON.stringify(nextContacts ));
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));
     }
 
-    if (nextContacts.length > prevContacts.length && prevContacts.length !== 0) {
+    if (
+      nextContacts.length > prevContacts.length &&
+      prevContacts.length !== 0
+    ) {
       this.toggleModal();
     }
   }
@@ -38,14 +41,10 @@ export class App extends Component {
     const { contacts, showModal } = this.state;
     return (
       <Container>
-                {showModal && (
-          <Modal onClose={this.toggleModal}>
-            Children
-          </Modal>
-        )}
+        {showModal && <Modal onClose={this.toggleModal}>Children</Modal>}
       </Container>
-    )
+    );
   }
 }
 
-export default App
+export default App;
